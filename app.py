@@ -1,4 +1,4 @@
-import fitur_4, fitur_3, fitur_2, fitur_6, fitur_1, fitur_5, fitur_7
+import BMI, Smartfat_Calculator, HealthCheck, Set_Health_Mission, Health_Progress, How_Are_You_Today, EyeCheck
 import show
 
 def main():
@@ -9,25 +9,25 @@ def main():
             pilihan = int(input("Pilih Menu (1-8): "))
 
             if pilihan == 1:
-                fitur_1.hitung_BMI()
+                BMI.fitur_1()
 
             elif pilihan == 2:
-                fitur_2.fitur_2()
+                Smartfat_Calculator.fitur_2()
 
             elif pilihan == 3:
-                fitur_3.healthcheck()
+                HealthCheck.fitur_3()
             
             elif pilihan == 4:
-                fitur_4.fitur_4()
+                Set_Health_Mission.fitur_4()
             
             elif pilihan == 5:
-                fitur_5.fitur_5()
+                Health_Progress.fitur_5()
             
             elif pilihan == 6:
-                fitur_6.cek_mood()
+                How_Are_You_Today.fitur_6()
             
             elif pilihan == 7:
-                fitur_7.main()
+                EyeCheck.fitur_7()
                 
             elif pilihan == 8:
                 print("\nPROGRAM BERHENTI")
