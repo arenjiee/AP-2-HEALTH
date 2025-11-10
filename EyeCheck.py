@@ -49,3 +49,13 @@ def tanya_gejala(daftar_pertanyaan):
         total += skor
         
     return total
+
+def kategori_cvs(total):
+    if total == 0:
+        return "Tidak ada gejala CVS"
+    elif total <= 6:
+        return "Tidak ada CVS"
+    elif total <= 13:
+        return "CVS ringan"
+    else:
+        return "CVS sedang/berat"
