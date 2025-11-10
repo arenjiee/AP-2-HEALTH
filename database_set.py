@@ -20,7 +20,18 @@ CREATE TABLE IF NOT EXISTS workouts (
 )
 """)
 
-
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS progress_harian (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session TEXT NOT NULL,
+    nama_workout TEXT,
+    kalori INTEGER NOT NULL,
+    protein INTEGER NOT NULL,
+    status TEXT NOT NULL,
+    target_kalori INTEGER DEFAULT 0,
+    target_protein INTEGER DEFAULT 0
+)
+""")
 conn.commit()
 
 cursor.execute("SELECT COUNT(*) FROM targets")
@@ -51,4 +62,33 @@ def get_target():
 
 def get_workouts():
     cursor.execute("SELECT id, nama_workout FROM workouts ORDER BY id")
+    return cursor.fetchall()
+
+def get_session():
+    cursor.execute("SELECT session FROM progress_harian")
+    return cursor.fetchall()
+
+def insert_progress(session, nama_workout, kalori, protein, status):
+    target_kal, target_pro = get_target()
+    
+    cursor.execute("""
+        INSERT INTO progress_harian 
+        (session, nama_workout, status, kalori, protein, target_kalori, target_protein)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (session, nama_workout, status, kalori, protein, target_kal, target_pro))
+    
+    conn.commit()
+
+def get_progress_history():
+    cursor.execute("""
+        SELECT session,
+               GROUP_CONCAT(nama_workout || ' ' || status, '\n') AS daftar_workout,
+               MAX(kalori),
+               MAX(target_kalori),
+               MAX(protein),
+               MAX(target_protein)
+        FROM progress_harian
+        GROUP BY session
+        ORDER BY id DESC
+    """)
     return cursor.fetchall()
