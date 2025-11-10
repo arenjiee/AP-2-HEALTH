@@ -59,3 +59,46 @@ def kategori_cvs(total):
         return "CVS ringan"
     else:
         return "CVS sedang/berat"
+    
+def main():
+    pertanyaan = [
+        "1. Penglihatan kabur saat melihat jauh",
+        "2. Penglihatan kabur saat melihat dekat",
+        "3. Penglihatan ganda",
+        "4. Mata terasa terbakar",
+        "5. Mata terasa gatal",
+        "6. Mata terasa berat",
+        "7. Nyeri di sekitar mata",
+        "8. Mata merah",
+        "9. Mata berair",
+        "10. Mata terasa kering",
+        "11. Sakit kepala",
+        "12. Sakit leher atau bahu",
+        "13. Silau terhadap cahaya",
+        "14. Sulit fokus",
+        "15. Seperti ada benda asing di mata",
+        "16. Rasa tidak nyaman di mata"
+    ]
+
+    print("=== KUESIONER COMPUTER VISION SYNDROME (CVS-Q) ===")
+    print("Frekuensi: 0=Tidak Pernah | 1=Kadang-kadang | 2=Sering")
+    print("Intensitas: 1=Ringan | 2=Berat")
+    print("Ketik 'exit' kapan saja untuk keluar dari program.")
+
+    nama = input("Masukkan nama Anda (atau ketik 'exit' untuk keluar): ")
+    if nama == "exit":
+        print("Terima kasih! Program dihentikan.")
+        return
+
+    total_skor = tanya_gejala(pertanyaan)
+
+    # Jika pengguna keluar di tengah jalan
+    if total_skor is None:
+        return
+
+    hasil = kategori_cvs(total_skor)
+
+    print("=== HASIL PENILAIAN CVS ===")
+    print("Nama:", nama)
+    print("Total Skor:", total_skor)
+    print("Kategori:", hasil)
