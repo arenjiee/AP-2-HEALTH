@@ -29,7 +29,6 @@ def fitur_4():
 
         print("\n✅ Target baru berhasil disimpan (data lama diganti).\n")
 
-
     def hapus_workout():
         workouts = database_set.get_workouts()
 
@@ -41,20 +40,22 @@ def fitur_4():
         for i, w in enumerate(workouts, 1):
             print(f"{i}. {w[1]}")   # Tampilkan tanpa ID
 
-        
-        nomor = int(input("\nMasukkan nomor workout yang ingin dihapus: "))
+        try:
+            nomor = int(input("\nMasukkan nomor workout yang ingin dihapus: "))
 
-        # Validasi rentang nomor
-        if nomor < 1 or nomor > len(workouts):
-            print("❌ Nomor tidak valid.\n")
-            return
+            # Validasi rentang nomor
+            if nomor < 1 or nomor > len(workouts):
+                print("❌ Nomor tidak valid.\n")
+                return
 
-        # Ambil ID dari workout berdasarkan index
-        workout_id = workouts[nomor - 1][0]
+            # Ambil ID dari workout berdasarkan index
+            workout_id = workouts[nomor - 1][0]
 
-        database_set.delete_workout_by_id(workout_id)
-        print("✅ Workout berhasil dihapus!\n")
+            database_set.delete_workout_by_id(workout_id)
+            print("✅ Workout berhasil dihapus!\n")
 
+        except ValueError:
+            print("❌ Input harus berupa angka.\n")
 
 
     def lihat_target():
