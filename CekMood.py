@@ -42,5 +42,21 @@ def cek_mood():
 
         print()
 
-cek_mood ()
+    total = 0 
+    jumlah = 0
+
+    for skor_mood in jawaban: 
+        total += skor_mood
+        jumlah += 1
+
+    rata_rata = total / jumlah 
+
+    print("=== Hasil Evaluasi Mood Anda Hari ini ===\n")
+    print(f"Rata-rata mood kamu: {rata_rata:.2f}\n")
+    if rata_rata <= 2:
+        print(f"Ya:( Suasana hatimu sedang kurang baik hari ini😔. Gapapa kok, istirahat dulu ya😇")
+    elif rata_rata <= 3:
+        print(f"Hmzz.. suasana hatimu berada ditengah-tengah🙂. Tapi tetap tenang yaa, jangan sampe kamu down😉")
+    else:
+        print(f"Alhamdulillah YEYY suasana hatimu cukup baik hari ini🤩✨. Semoga energi positifnya berlanjut yaaa🌞")
 
