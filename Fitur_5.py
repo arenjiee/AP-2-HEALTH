@@ -1,17 +1,15 @@
-from database_set import get_workouts, insert_progress, get_progress_history, get_target, get_session
+from database_set import get_progress_history, get_target, get_workouts, insert_progress, get_session
 import re
-
+    
 def fitur_5():
     def input_progress():
         workouts = get_workouts()
-        target_kalori, target_pro = get_target()
+
         existing_sessions = [s[0].capitalize() for s in get_session()]
-    
-        if not workouts:
-            print("⚠️ Belum ada daftar workout.")
-            return
+        target_kalori, target_pro = get_target()
+
         while True:
-            session = input("\nNama sesi progress (cth: 'Day 1', '01-01-2025'): ")
+            session = input("\nNama sesi progress (cth: 'Day 1', '01-01-2025'): ").strip().capitalize()
             if re.match(r"^(Day\s+[1-9]|Day\s+[1-9][0-9]|Day\s+[1-9][0-9][0-9]|\d{2}-\d{2}-\d{4})$", session):
                 if session.capitalize() in existing_sessions:
                     print(f"Session {session} sudah ada sebelumnya!!")
@@ -27,12 +25,15 @@ def fitur_5():
             else:
                 print("❌ Format salah! Gunakan 'Day X' atau 'DD/MM/YYYY'. Coba lagi.")
                 continue
-
         status_list = []
-        for _, nama_workout in workouts:
-            workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
-            status_workout = "✅" if workout_input == "y" else "❌"
-            status_list.append((nama_workout, status_workout))
+        if not workouts:
+            print ("⚠️ Belum ada daftar workout.")
+            status_list.append(("Tidak ada workout", "❌"))
+        else:
+            for _, nama_workout in workouts:
+                workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
+                status_workout = "✅" if workout_input == "y" else "❌"
+                status_list.append((nama_workout, status_workout))
         
         if target_kalori > 0:
             kalori_input = int(input("Total kalori hari ini berapa? : "))
@@ -63,20 +64,27 @@ def fitur_5():
 
             # Tampilkan workout (sudah berupa GROUP_CONCAT)
             workout_list = workouts.split("\n")
-            for workout in workout_list:
-                print(f"  - {workout}")
+            if not workout_list:
+                print ("⚠️ Belum ada daftar workout.")
+            else:
+                for workout in workout_list:
+                    print(f"  - {workout}")
 
             # Status Kalori
-            if target_kal > 0:
-                kal_status = "✅" if kal >= target_kal else "❌"
-                print(f"  Kalori : {kal}/{target_kal} {kal_status}")
+            if kal == target_kal:
+                print(f"  Kalori : {kal}/{target_kal} ✅")
+            elif kal > target_kal or kal < target_kal :
+                print(f"  Kalori : {kal}/{target_kal} ❌")
+                print(f"  Capaian Kalori tidak sesuai target!")
             else:
                 print(f"  Kalori : {kal}")
 
             # Status Protein
-            if target_pro > 0:
-                pro_status = "✅" if pro >= target_pro else "❌"
-                print(f"  Protein: {pro}/{target_pro} {pro_status}")
+            if pro == target_pro:
+                print(f"  Protein: {pro}/{target_pro} ✅")
+            elif pro > target_pro or pro < target_pro:
+                print(f"  Kalori : {pro}/{target_pro} ❌")
+                print(f"  Capaian Protein tidak sesuai target!")
             else:
                 print(f"  Protein: {pro}")
 
