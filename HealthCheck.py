@@ -1,4 +1,4 @@
-def healthcheck():
+def fitur_3():
     print("\n=== HealthCheck ===")
     print("Cek kesehatan berdasarkan kegiatan harianmu!!\n")
 
@@ -42,5 +42,3 @@ def healthcheck():
             break
         except ValueError:
             print("⚠ Masukkan angka yang valid untuk durasi olahraga.\n")
-
-healthcheck()

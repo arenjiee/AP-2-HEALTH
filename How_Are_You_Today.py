@@ -1,4 +1,4 @@
-def cek_mood(): 
+def fitur_6(): 
     pertanyaan = [
         "1. Bagaimana suasana hatimu secara keseluruhan saat ini?",
         "2. Seberapa tenang dan nyaman perasaanmu saat ini?",

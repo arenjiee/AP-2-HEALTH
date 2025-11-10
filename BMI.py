@@ -1,6 +1,6 @@
 import re
 
-def hitung_BMI():
+def fitur_1():
     def perhitungan_bmi(berat, tinggi_cm):
         tinggi_m = tinggi_cm / 100
         return berat / (tinggi_m ** 2)

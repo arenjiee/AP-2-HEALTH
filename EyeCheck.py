@@ -60,7 +60,7 @@ def kategori_cvs(total):
     else:
         return "CVS sedang/berat"
     
-def main():
+def fitur_7():
     pertanyaan = [
         "1. Penglihatan kabur saat melihat jauh",
         "2. Penglihatan kabur saat melihat dekat",
