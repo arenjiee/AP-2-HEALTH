@@ -168,5 +168,23 @@ def smartfat_calcu():
     print(f"Body Fat (%)  : {bodyfat:.1f}%")
     print(f"Kategori      : {kategori}")
 
+    if "Essential Fat (Sangat rendah)" in kategori:
+        print("Silakan konsultasi kesehatan Anda ke dokter! 😔")
+    elif "Obesitas" in kategori:
+        print("Kurangi asupan kalori dan rutin berolahraga 🏃🏃\nSemangat 🤩😊")
+    elif "Tidak dapat dipastikan" in kategori:
+            print("Silakan konsultasikan kepada dokter anak untuk mengetahui lebih lanjut 👶👧")
+    else:
+        if "Bugar (Fitness)" in kategori or "Sehat" in kategori:
+            print("Pertahankan pola hidup sehat dan seimbang 💪💪")
+
+def fitur_2():
+    while True:
+        smartfat_calcu()
+        lagi = input("\nIngin menghitung lagi? (y/n): ").lower()
+        if lagi != "y":
+            print("\nTerima kasih telah menggunakan SmartFat Calculator 🤩 ")
+            print("Tetap jaga kesehatan dan semangat! 👋")
+            break
 
    
