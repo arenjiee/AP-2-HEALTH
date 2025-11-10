@@ -1,18 +1,23 @@
-from database_set import get_workouts, insert_progress, get_progress_history, get_target
+from database_set import get_workouts, insert_progress, get_progress_history, get_target, get_session
 import re
 
 def fitur_5():
     def input_progress():
         workouts = get_workouts()
         target_kalori, target_pro = get_target()
-
+        existing_sessions = [s[0].capitalize() for s in get_session()]
+    
         if not workouts:
             print("⚠️ Belum ada daftar workout.")
             return
         while True:
             session = input("\nNama sesi progress (cth: 'Day 1', '01-01-2025'): ")
             if re.match(r"^(Day\s+[1-9]|Day\s+[1-9][0-9]|Day\s+[1-9][0-9][0-9]|\d{2}-\d{2}-\d{4})$", session):
-                break
+                if session.capitalize() in existing_sessions:
+                    print(f"Session {session} sudah ada sebelumnya!!")
+                    continue
+                else:
+                    break
             elif re.match(r"^(Day\s+-[1-9]|Day\s+-[1-9][0-9]|Day\s+-[1-9][0-9][0-9]|\d{2}-\d{2}-\d{4})$", session):
                 print("❌ Sesi tidak boleh dimulai dari 'Day -X'. Mulai dari 'Day 1', ya!")
                 continue
@@ -22,7 +27,7 @@ def fitur_5():
             else:
                 print("❌ Format salah! Gunakan 'Day X' atau 'DD/MM/YYYY'. Coba lagi.")
                 continue
-            
+
         status_list = []
         for _, nama_workout in workouts:
             workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
