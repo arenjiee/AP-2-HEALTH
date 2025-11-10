@@ -5,20 +5,21 @@ import re
 # validasi inputan: gender, usia, berat badan, tinggi badan
 def validasi_gender():
     while True:
-        gender= input("Masukan jenis kelamin (L/P): ").strip().upper()
-        if re.fullmatch(r"[LP]", gender):
-            return gender
+        gender = input("Masukkan jenis kelamin (L/P atau Laki-laki/Perempuan): ").strip().lower()
+        if gender in ["l", "laki", "laki-laki", "laki laki"]:
+            return "L"
+        elif gender in ["p", "perempuan"]:
+            return "P"
         else:
-            print("⚠️ Inputan tidak valid! Masukkan 'L' untuk laki-laki atau 'P' untuk perempuan.\n")    
+            print("⚠️ Masukkan hanya 'L' untuk laki-laki atau 'P' untuk perempuan ⚠️\n")
 
 def validasi_usia():
     while True:
             usia = input("Masukkan usia anda (tahun): ")
-            if re.fullmatch(r"[1-9]|[1-9][1-9]|[1-9][1-9][1-9]", usia):
+            if re.fullmatch(r"\d+", usia):
                 usia = int(usia)
                 if usia > 99:
                     print ("⚠️ PERHITUNGAN HANYA SAMPAI USIA 99 TAHUN ⚠️\n")
-                    continue
                 else:
                     return usia
             else:
