@@ -1,5 +1,6 @@
 from database_set import get_workouts, insert_progress, get_progress_history, get_target
-    
+import re
+
 def fitur_5():
     def input_progress():
         workouts = get_workouts()
@@ -10,27 +11,39 @@ def fitur_5():
             return
         while True:
             session = input("\nNama sesi progress (cth: 'Day 1', '01-01-2025'): ")
-            status_list = []
-            for _, nama_workout in workouts:
-                workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
-                status_workout = "✅" if workout_input == "y" else "❌"
-                status_list.append((nama_workout, status_workout))
-            
-            if target_kalori > 0:
-                kalori_input = int(input("Total kalori hari ini berapa? : "))
-                if target_pro > 0:
-                    protein_input = int(input("Total protein hari ini berapa? : "))
-                else:
-                    print("\n⚠️ Target protein belum diatur.")
-                    protein_input = 0
+            if re.match(r"^(Day\s+[1-9]|Day\s+[1-9][0-9]|Day\s+[1-9][0-9][0-9]|\d{2}-\d{2}-\d{4})$", session):
+                break
+            elif re.match(r"^(Day\s+-[1-9]|Day\s+-[1-9][0-9]|Day\s+-[1-9][0-9][0-9]|\d{2}-\d{2}-\d{4})$", session):
+                print("❌ Sesi tidak boleh dimulai dari 'Day -X'. Mulai dari 'Day 1', ya!")
+                continue
+            elif re.match(r"^(Day\s+[0])$", session):
+                print("❌ Sesi tidak boleh dimulai dari 'Day 0'. Mulai dari 'Day 1', ya!")
+                continue
             else:
-                print("\n⚠️ Target kalori belum diatur.")
-                kalori_input =0
+                print("❌ Format salah! Gunakan 'Day X' atau 'DD/MM/YYYY'. Coba lagi.")
+                continue
+            
+        status_list = []
+        for _, nama_workout in workouts:
+            workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
+            status_workout = "✅" if workout_input == "y" else "❌"
+            status_list.append((nama_workout, status_workout))
+        
+        if target_kalori > 0:
+            kalori_input = int(input("Total kalori hari ini berapa? : "))
+            if target_pro > 0:
+                protein_input = int(input("Total protein hari ini berapa? : "))
+            else:
+                print("\n⚠️ Target protein belum diatur.")
+                protein_input = 0
+        else:
+            print("\n⚠️ Target kalori belum diatur.")
+            kalori_input =0
 
-            for nama, status in status_list:
-                insert_progress(session, nama, kalori_input, protein_input, status)
+        for nama, status in status_list:
+            insert_progress(session, nama, kalori_input, protein_input, status)
 
-            print("\n✅ Progress berhasil disimpan!\n")
+        print("\n✅ Progress berhasil disimpan!\n")
 
     def lihat_history():
         print("\n=== HISTORY PROGRESS ===\n")
