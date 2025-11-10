@@ -28,3 +28,73 @@ def fitur_4():
 
 
         print("\n✅ Target baru berhasil disimpan (data lama diganti).\n")
+
+
+    def hapus_workout():
+        workouts = database_set.get_workouts()
+
+        if not workouts:
+            print("\n❌ Tidak ada workout yang bisa dihapus.\n")
+            return
+
+        print("\n=== HAPUS WORKOUT ===")
+        for i, w in enumerate(workouts, 1):
+            print(f"{i}. {w[1]}")   # Tampilkan tanpa ID
+
+        
+        nomor = int(input("\nMasukkan nomor workout yang ingin dihapus: "))
+
+        # Validasi rentang nomor
+        if nomor < 1 or nomor > len(workouts):
+            print("❌ Nomor tidak valid.\n")
+            return
+
+        # Ambil ID dari workout berdasarkan index
+        workout_id = workouts[nomor - 1][0]
+
+        database_set.delete_workout_by_id(workout_id)
+        print("✅ Workout berhasil dihapus!\n")
+
+
+
+    def lihat_target():
+        print("\n=== TARGET SAAT INI ===")
+        target = database_set.get_target()
+
+        if target is None:
+            print("❌ Belum ada target kalori/protein.")
+            return
+
+        kalori, protein = target
+        workouts = database_set.get_workouts()
+
+        print("\n-- Workout yang Ditargetkan --")
+        if workouts:
+            for i, w in enumerate(workouts, 1):
+                print(f"{i}. {w[1]}")  # tanpa ID
+        else:
+            print("Belum ada workout ditambahkan.")
+
+        print(f"\nKalori  : {kalori} kkal")
+        print(f"Protein : {protein} gram\n")
+        
+    while True:
+        print("\n=== MENU ===\n")
+        print("1. Set Target Harian")
+        print("2. Lihat Target Tersimpan")
+        print("3. Hapus workout")
+        print("4. Keluar")
+
+        pilihan = input("Pilih menu (1-3): ")
+
+        if pilihan == "1":
+            set_target()
+        elif pilihan == "2":
+            lihat_target()
+        elif pilihan == "3":
+            hapus_workout()
+        elif pilihan == "4":
+            print("Program selesai.")
+            break
+        else:
+            print("Pilihan tidak valid, coba lagi.\n")
