@@ -1,5 +1,5 @@
 def fitur_3():
-    print("\n=== HealthCheck ===")
+    print("\n===== HealthCheck =====")
     print("Cek kesehatan berdasarkan kegiatan harianmu!!\n")
 
     while True:
@@ -42,3 +42,9 @@ def fitur_3():
             break
         except ValueError:
             print("⚠ Masukkan angka yang valid untuk durasi olahraga.\n")
+
+    print("\n=== Ringkasan Kegiatan Hari Ini ===")
+    print(f"Usia kamu: {usia} tahun")
+    print(f"Durasi tidur: {tidur} jam")
+    print(f"Asupan air harian: {air} liter")
+    print(f"Durasi olahraga: {olahraga} menit\n")
