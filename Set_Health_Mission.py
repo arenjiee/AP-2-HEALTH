@@ -26,7 +26,7 @@ def fitur_4():
 
                         workout = (input("Masukkan target workout : ").strip().lower())
 
-                        pattern = r"^([a-zA-Z ]+)\s+(\d+)\s*(x|menit|m)?$"
+                        pattern = r"^([a-zA-Z ]+)\s+(\d+)\s*(x|menit|meter)?$"
                         match = re.match(pattern, workout)
 
                         if not match:
@@ -104,32 +104,32 @@ def fitur_4():
 
 
     def hapus_workout():
-        workouts = database_set.get_workouts()
+        while True:
+            workouts = database_set.get_workouts()
 
-        if not workouts:
-            print("\n❌ Tidak ada workout yang bisa dihapus.\n")
-            return
-
-        print("\n=== HAPUS WORKOUT ===")
-        for i, w in enumerate(workouts, 1):
-            print(f"{i}. {w[1]}")   # Tampilkan tanpa ID
-
-        try:
-            nomor = int(input("\nMasukkan nomor workout yang ingin dihapus: "))
-
-            # Validasi rentang nomor
-            if nomor < 1 or nomor > len(workouts):
-                print("❌ Nomor tidak valid.\n")
+            if not workouts:
+                print("\n❌ Tidak ada workout yang bisa dihapus.\n")
                 return
 
-            # Ambil ID dari workout berdasarkan index
-            workout_id = workouts[nomor - 1][0]
+            print("\n=== HAPUS WORKOUT ===")
+            for i, w in enumerate(workouts, 1):
+                print(f"{i}. {w[1]}")   # Tampilkan tanpa ID
 
-            database_set.delete_workout_by_id(workout_id)
-            print("✅ Workout berhasil dihapus!\n")
+            try:
+                nomor = int(input("\nMasukkan nomor workout yang ingin dihapus: "))
 
-        except ValueError:
-            print("❌ Input harus berupa angka.\n")
+                # Validasi rentang nomor
+                if nomor < 1 or nomor > len(workouts):
+                    print("❌ Nomor tidak valid.\n")
+                    continue
+                    
+                workout_id = workouts[nomor - 1][0] # Ambil ID dari workout berdasarkan index
+
+                database_set.delete_workout_by_id(workout_id)
+                print("✅ Workout berhasil dihapus!\n")
+
+            except ValueError:
+                print("❌ Input harus berupa angka.\n")
 
 
     def lihat_target():
@@ -161,7 +161,7 @@ def fitur_4():
         print("4. 👋 Keluar")
 
         try:
-            pilihan_menu= int(input("Pilih menu (1-3): "))
+            pilihan_menu= int(input("Pilih menu (1-4): "))
             if pilihan_menu == 1:
                 set_target()
             elif pilihan_menu == 2:
