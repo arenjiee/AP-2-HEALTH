@@ -6,59 +6,59 @@ def tanya_gejala(daftar_pertanyaan):
 
         # Input frekuensi
         while True:
-            frek_input = input("  Frekuensi (0=tidak pernah, 1=kadang, 2=sering, ketik 'exit' untuk keluar): ")
+            frekuensi_input = input("  Frekuensi (0=tidak pernah, 1=kadang, 2=sering, ketik 'exit' untuk keluar): ")
 
             # Jika pengguna ingin keluar
-            if frek_input == "exit":
-                print("Terima kasih! Program dihentikan.")
+            if frekuensi_input == "exit":
+                print("Terima kasih! Program dihentikan👋🏻")
                 return None
 
             # Pastikan input angka valid
-            if frek_input.isdigit():
-                frek = int(frek_input)
-                if frek in [0, 1, 2]:
+            if frekuensi_input.isdigit():
+                frekuensi = int(frekuensi_input)
+                if frekuensi in [0, 1, 2]:
                     break
                 else:
-                    print("Masukkan hanya angka 0, 1, atau 2!")
+                    print("⚠️ Inputan hanya boleh angka 0, 1, atau 2! ⚠️")
             else:
-                print("Harus berupa angka atau ketik 'exit' untuk keluar!")
+                print("⚠️ Harus berupa angka atau ketik 'exit' untuk keluar! ⚠️")
 
         # Jika frekuensi = 0 → lanjut ke pertanyaan berikutnya
-        if frek == 0:
+        if frekuensi == 0:
             continue
 
         # Input intensitas
         while True:
-            inten_input = input("  Intensitas (1=ringan, 2=berat, ketik 'exit' untuk keluar): ")
+            intensitas_input = input("  Intensitas (1=ringan, 2=berat, ketik 'exit' untuk keluar): ")
 
-            if inten_input == "exit":
-                print("Terima kasih! Program dihentikan.")
+            if intensitas_input == "exit":
+                print("Terima kasih! Program dihentikan👋🏻")
                 return None
 
-            if inten_input.isdigit():
-                inten = int(inten_input)
-                if inten in [1, 2]:
+            if intensitas_input.isdigit():
+                intensitas = int(intensitas_input)
+                if intensitas in [1, 2]:
                     break
                 else:
                     print("Masukkan hanya angka 1 atau 2!")
             else:
-                print("Harus berupa angka atau ketik 'exit' untuk keluar!")
+                print("⚠️ Harus berupa angka atau ketik 'exit' untuk keluar! ⚠️")
 
         # Hitung skor pertanyaan ini
-        skor = frek * inten
+        skor = frekuensi * intensitas
         total += skor
         
     return total
 
 def kategori_cvs(total):
     if total == 0:
-        return "Tidak ada gejala CVS"
+        return "Tidak ada gejala CVS🌿"
     elif total <= 6:
-        return "Tidak ada CVS"
+        return "Tidak ada CVS🙌"
     elif total <= 13:
-        return "CVS ringan"
+        return "CVS ringan😌"
     else:
-        return "CVS sedang/berat"
+        return "CVS sedang/berat🚨"
     
 def fitur_7():
     pertanyaan = [
@@ -87,7 +87,7 @@ def fitur_7():
 
     nama = input("Masukkan nama Anda (atau ketik 'exit' untuk keluar): ")
     if nama == "exit":
-        print("Terima kasih! Program dihentikan.")
+        print("Terima kasih! Program dihentikan👋🏻")
         return
 
     total_skor = tanya_gejala(pertanyaan)
