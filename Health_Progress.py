@@ -31,8 +31,18 @@ def fitur_5():
             status_list.append(("Tidak ada workout", "❌"))
         else:
             for _, nama_workout in workouts:
-                workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
-                status_workout = "✅" if workout_input == "y" else "❌"
+                while True:
+                    workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
+                    if re.match(r"^(y|yes|n|no)$", workout_input):
+                        if workout_input == "y" or "yes":
+                            status_workout = "✅"  
+                            break
+                        else:
+                            status_workout = "❌"
+                            break
+                    else:
+                        print("⚠️ Inputan hanya  boleh 'y'/'yes' atau 'n'/'no' ⚠️")
+                        continue
                 status_list.append((nama_workout, status_workout))
         
         if target_kalori > 0:
