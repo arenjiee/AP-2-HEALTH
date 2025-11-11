@@ -45,6 +45,7 @@ def tanya_gejala(daftar_pertanyaan):
         
     return total
 
+
 def kategori_cvs(total):
     if total == 0:
         return "Tidak ada gejala CVS🌿"
@@ -116,8 +117,10 @@ def fitur_7():
         return
 
     hasil = kategori_cvs(total_skor)
+    saran = saran_cvs(hasil)
 
     print("\n=== HASIL PENILAIAN CVS ===")
     print("Nama:", nama)
     print("Total Skor:", total_skor)
     print("Kategori:", hasil)
+    print("\n" + saran)
