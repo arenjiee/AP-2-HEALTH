@@ -1,4 +1,4 @@
-import BMI, Smartfat_Calculator, HealthCheck, Set_Health_Mission, Health_Progress, How_Are_You_Today, EyeCheck
+import BMI, Smartfat_calculator, HealthCheck, Set_Health_Mission, Health_Progress, How_Are_You_Today, EyeCheck
 import show
 
 def main():
@@ -12,7 +12,7 @@ def main():
                 BMI.fitur_1()
 
             elif pilihan == 2:
-                Smartfat_Calculator.fitur_2()
+                Smartfat_calculator.fitur_2()
 
             elif pilihan == 3:
                 HealthCheck.fitur_3()
