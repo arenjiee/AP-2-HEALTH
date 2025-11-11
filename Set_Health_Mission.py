@@ -41,13 +41,24 @@ def fitur_4():
                             print(f"\n⚠️ '{nama_workout}' tidak ada di daftar workout yang tersedia.\n")
                             continue
                         
+                    
                         workout_db = database_set.get_workouts()
-                        workout_nama = [' '.join(w[1].split()[:-1]).lower() for w in workout_db]
 
+                    
+                        workout_nama = []
+                        for i in workout_db:
+                            if i[1]:
+                                nama = re.match(r"^[a-zA-Z ]+", i[1])
+                                if nama:
+                                    workout_nama.append(nama.group(0).strip().lower())
+
+
+                        
                         if nama_workout in workout_nama:
-                            print(f"\n❌ Target {nama_workout} telah di set sebelumnya!!")
+                            print(f"\n❌ Target '{nama_workout}' sudah diset sebelumnya!\n")
                             break
 
+                        
                         if satuan == "x":
                             full_workout = f"{nama_workout} {jumlah}{satuan}"
                         elif satuan == "menit":
@@ -58,36 +69,39 @@ def fitur_4():
                         database_set.insert_target_workout(full_workout)
                         print(f"\n✅ Target '{full_workout}' berhasil disimpan !\n")
 
+                        # 🔹 Tanya apakah ingin lanjut
                         while True:
                             lanjut = input("Apakah masih ada workout yang ingin di set? (y/n): ").strip().lower()
-
-                            if not re.match(r"^(y|n)$", lanjut):
-                                print("\n❌ Format salah! Hanya boleh 'y' atau 'n'.\n")
+                            if not re.match(r"^(y|n|yes|no)$", lanjut):
+                                print("\n❌ Format salah! Hanya boleh 'y'/'yes' atau 'n'/'no'.\n")
                                 continue
                             else:
                                 break
 
-                        if lanjut != "y":
-                            break
-                        else:
+                        if lanjut in ("y", "yes"):
                             continue
-                
+                        if lanjut in ("n", "no"):
+                            break
+
                 elif pilihan == 2:
                     kalori = int(input("Masukkan target kalori harian (kkal): "))
                     database_set.insert_target_kalori(kalori)
                     print("\n✅ Target kalori berhasil disimpan !!")
+
                 elif pilihan == 3:
                     protein = int(input("Masukkan target protein harian (gram): "))
                     database_set.insert_target_protein(protein)
                     print("\n✅ Target protein berhasil disimpan !!")
+
                 elif pilihan == 4:
                     break
                 else:
                     print("💢 Pilihan tidak ada di menu")
             except ValueError:
-                print("\n ⚠️ INPUTAN HANYA BOLEH ANGKA ⚠️\n")
+                print("\n⚠️ INPUTAN HANYA BOLEH ANGKA ⚠️\n")
 
         print("\n✅ Target baru berhasil disimpan, semangat berjuang !!\n")
+
 
     def hapus_workout():
         workouts = database_set.get_workouts()

@@ -7,14 +7,6 @@ def fitur_6():
         "5. Seberapa puas kamu dengan hari yang kamu jalani hari ini?"
     ]
     
-    daftar_opsi = [
-        "   1. Sangat buruk",
-        "   2. Buruk",
-        "   3. Biasa saja",
-        "   4. Baik",
-        "   5. Sangat baik"
-    ]
-    
     jawaban = [] 
     print("=== How Are You Today? ===")
     print("Selamat Datang Diprogram cek suasana hati Anda hari ini😇🤩")
@@ -27,8 +19,6 @@ def fitur_6():
 
     for i in pertanyaan:
         print(i)
-        for x in daftar_opsi:
-            print(x)
         while True:
             try:
                 opsi = int(input("Masukkan opsi (1-5) : "))
