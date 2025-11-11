@@ -47,16 +47,17 @@ def fitur_1():
             while True:
                 ulang = input("\nIngin menghitung lagi? (y/n): ").lower()
 
-                if not re.match(r"^(y|n)$", ulang):
-                    print("\n❌ Format salah! Hanya boleh 'y' atau 'n'.")
+                if not re.match(r"^(y|n|yes|no)$", ulang):
+                    print("\n❌ Format salah! Hanya boleh 'y'/'yes' atau 'n'/'no'.\n")
                     continue
                 else:
                     break
 
-            if ulang != "y":
-                break
-            else:
-                continue
+            if ulang in ("y", "yes"):
+                    continue
+            if ulang in ("n", "no"):
+                    break
+
 
         except ValueError:
             print("\n ⚠ INPUTAN HANYA BOLEH ANGKA ⚠\n")

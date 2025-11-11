@@ -5,7 +5,7 @@ import re
 # validasi inputan: gender, usia, berat badan, tinggi badan
 def validasi_gender():
     while True:
-        gender = input("Masukkan jenis kelamin (L/P atau Laki-laki/Perempuan): ").strip().lower()
+        gender = input("\nMasukkan jenis kelamin (L/P atau Laki-laki/Perempuan): ").strip().lower()
         if gender in ["l", "laki", "laki-laki", "laki laki"]:
             return "L"
         elif gender in ["p", "perempuan"]:
@@ -42,10 +42,6 @@ def validasi_tb():
             print ("⚠️ INPUTAN HANYA BOLEH ANGKA DAN POSITIF ⚠️\n")
     
 def smartfat_calcu():
-    print("\n=== SmartFat Calculator ===")
-    print("Selamat Datang👋🤩🎉")
-    print("Masukkan data diri Anda untuk menghitung persentase lemak tubuh\n")
-
     jenis_kelamin = validasi_gender()
     umur = validasi_usia()
     berat = validasi_bb()
@@ -179,15 +175,23 @@ def smartfat_calcu():
             print("Pertahankan pola hidup sehat dan seimbang 💪💪")
 
 def fitur_2():
+    print("\n=== SmartFat Calculator ===")
+    print("Selamat Datang👋🤩🎉")
+    print("Masukkan data diri Anda untuk menghitung persentase lemak tubuh\n")
+
     while True:
         smartfat_calcu()
         while True:
             lagi = input("\nIngin menghitung lagi? (y/n): ").lower()
-            if lagi == "y":
-                break
-            elif lagi == "n":
-                print("\nTerima kasih telah menggunakan SmartFat Calculator 🤩 ")
-                print("Tetap jaga kesehatan dan semangat! 👋")
-                return
+            if not re.match(r"^(y|n|yes|no)$", lagi):
+                print("\n❌ Format salah! Hanya boleh 'y'/'yes' atau 'n'/'no'.\n")
+                continue
             else:
-                print("\n⚠️ Input tidak valid! Masukkan hanya 'y' untuk ya atau 'n' untuk tidak ⚠️\n")
+                break
+
+        if lagi in ("y", "yes"):
+            continue
+        if lagi in ("n", "no"):
+            print("\nTerima kasih telah menggunakan SmartFat Calculator 🤩 ")
+            print("Tetap jaga kesehatan dan semangat! 👋")
+            break
