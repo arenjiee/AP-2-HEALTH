@@ -6,7 +6,7 @@ def fitur_5():
         workouts = get_workouts()
 
         existing_sessions = [s[0].capitalize() for s in get_session()]
-        target_kalori, target_pro = get_target()
+        target_kalori, target_protein = get_target()
 
         while True:
             session = input("\nNama sesi progress (cth: 'Day 1', '01-01-2025'): ").strip().capitalize()
@@ -43,18 +43,17 @@ def fitur_5():
                     else:
                         print("⚠️ Inputan hanya  boleh 'y'/'yes' atau 'n'/'no' ⚠️")
                         continue
-                status_list.append((nama_workout, status_workout))
-        
+                status_list.append((nama_workout, status_workout)) 
         if target_kalori > 0:
             kalori_input = int(input("Total kalori hari ini berapa? : "))
-            if target_pro > 0:
-                protein_input = int(input("Total protein hari ini berapa? : "))
-            else:
-                print("\n⚠️ Target protein belum diatur.")
-                protein_input = 0
-        else:
+        elif target_kalori == 0:
             print("\n⚠️ Target kalori belum diatur.")
-            kalori_input =0
+            kalori_input = 0
+        if target_protein > 0:
+                protein_input = int(input("Total protein hari ini berapa? : "))
+        elif target_protein == 0:
+                print("\n⚠️ Target protein belum diatur.")
+                protein_input = 0    
 
         for nama, status in status_list:
             insert_progress(session, nama, kalori_input, protein_input, status)
