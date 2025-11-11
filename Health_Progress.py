@@ -31,8 +31,18 @@ def fitur_5():
             status_list.append(("Tidak ada workout", "❌"))
         else:
             for _, nama_workout in workouts:
-                workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
-                status_workout = "✅" if workout_input == "y" else "❌"
+                while True:
+                    workout_input = input(f"'{nama_workout}' udah kamu lakukan belum? (y/n): ").lower()
+                    if re.match(r"^(y|yes|n|no)$", workout_input):
+                        if workout_input == "y" or "yes":
+                            status_workout = "✅"  
+                            break
+                        else:
+                            status_workout = "❌"
+                            break
+                    else:
+                        print("⚠️ Inputan hanya  boleh 'y'/'yes' atau 'n'/'no' ⚠️")
+                        continue
                 status_list.append((nama_workout, status_workout))
         
         if target_kalori > 0:
@@ -59,7 +69,7 @@ def fitur_5():
             print("⚠️ Belum ada history ⚠️")
             return
 
-        for session, workouts, kal, target_kal, pro, target_pro in data:
+        for session, workouts, kalori, target_kalori, protein, target_protein in data:
             print(f"Sesi: {session}")
 
             # Tampilkan workout (sudah berupa GROUP_CONCAT)
@@ -71,22 +81,22 @@ def fitur_5():
                     print(f"  - {workout}")
 
             # Status Kalori
-            if kal == target_kal:
-                print(f"  Kalori : {kal}/{target_kal} ✅")
-            elif kal > target_kal or kal < target_kal :
-                print(f"  Kalori : {kal}/{target_kal} ❌")
+            if kalori == target_kalori:
+                print(f"  Kalori : {kalori}/{target_kalori} ✅")
+            elif kalori > target_kalori or kalori < target_kalori :
+                print(f"  Kalori : {kalori}/{target_kalori} ❌")
                 print(f"  Capaian Kalori tidak sesuai target!")
             else:
-                print(f"  Kalori : {kal}")
+                print(f"  Kalori : {kalori}")
 
             # Status Protein
-            if pro == target_pro:
-                print(f"  Protein: {pro}/{target_pro} ✅")
-            elif pro > target_pro or pro < target_pro:
-                print(f"  Kalori : {pro}/{target_pro} ❌")
+            if protein == target_protein:
+                print(f"  Protein: {protein}/{target_protein} ✅")
+            elif protein > target_protein or protein < target_protein:
+                print(f"  Kalori : {protein}/{target_protein} ❌")
                 print(f"  Capaian Protein tidak sesuai target!")
             else:
-                print(f"  Protein: {pro}")
+                print(f"  Protein: {protein}")
 
             print("-" * 40)
 
