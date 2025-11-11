@@ -181,10 +181,13 @@ def smartfat_calcu():
 def fitur_2():
     while True:
         smartfat_calcu()
-        lagi = input("\nIngin menghitung lagi? (y/n): ").lower()
-        if lagi != "y":
-            print("\nTerima kasih telah menggunakan SmartFat Calculator 🤩 ")
-            print("Tetap jaga kesehatan dan semangat! 👋")
-            break
-
-   
+        while True:
+            lagi = input("\nIngin menghitung lagi? (y/n): ").lower()
+            if lagi == "y":
+                break
+            elif lagi == "n":
+                print("\nTerima kasih telah menggunakan SmartFat Calculator 🤩 ")
+                print("Tetap jaga kesehatan dan semangat! 👋")
+                return
+            else:
+                print("⚠️ Input tidak valid! Masukkan hanya 'y' untuk ya atau 'n' untuk tidak ⚠️\n")
