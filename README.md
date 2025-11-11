@@ -8,13 +8,13 @@ Tujuan
 Program ini mengajak pengguna untuk lebih sadar terhadap kondisi tubuh serta membangun kebiasaan hidup sehat secara konsisten dan modern.
 
 Fitur Utama
-•	Hitung BMI
-•	Smartfat Calculator
-•	Health Check (durasi tidur, konsumsi air, durasi olahraga)
-•	Set Health Mission
-•	Health Progress
-•	How Are You Today
-•	EyeCheck
+1. Hitung BMI
+2. Smartfat Calculator
+3. Health Check (durasi tidur, konsumsi air, durasi olahraga)
+4. Set Health Mission
+5. Health Progress
+6. How Are You Today
+7. EyeCheck
 
 Penjelasan Fitur
 Berikut adalah penjelasan rinci dari setiap fitur:
@@ -41,15 +41,17 @@ Untuk menjalankan proyek AP-2-Health, ikuti langkah-langkah berikut:
 5. Setelah itu, program akan menampilkan menu utama di terminal dan siap digunakan.
 
 Teknologi yang Digunakan
-•	Python
-•	SQLite3 berfungsi untuk menyimpan data di database
+1. Python
+2. SQLite3 berfungsi untuk menyimpan data di database
 
 Kontributor / Tim
-•	Khaerurrozikin  – Asisten Lab AP-2
-•	Al Daffa A'aren  – Project Manager
-•	Diva Puspita  – Contributor
-•	Fadhiyah Syafikah Firman – Contributor
-•	Almendo Daud Ubro – Contributor
-•	Mawaddah Fajri Lahamuddin – Contributor
-•	Muh. Faiz Ilyas – Contributor
-•	Andi Alifah Mahrani – Contributor
+1. Khaerurrozikin  – Asisten Lab AP-2
+2. Al Daffa A'aren  – Project Manager
+3. Diva Puspita  – Contributor
+4. Fadhiyah Syafikah Firman – Contributor
+5. Almendo Daud Ubro – Contributor
+6. Mawaddah Fajri Lahamuddin – Contributor
+7. Muh. Faiz Ilyas – Contributor
+8. Andi Alifah Mahrani – Contributor
+
+
