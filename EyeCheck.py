@@ -8,12 +8,10 @@ def tanya_gejala(daftar_pertanyaan):
         while True:
             frekuensi_input = input("  Frekuensi (0=tidak pernah, 1=kadang, 2=sering, ketik 'exit' untuk keluar): ")
 
-            # Jika pengguna ingin keluar
             if frekuensi_input == "exit":
                 print("Terima kasih! Program dihentikan👋🏻")
                 return None
 
-            # Pastikan input angka valid
             if frekuensi_input.isdigit():
                 frekuensi = int(frekuensi_input)
                 if frekuensi in [0, 1, 2]:
@@ -23,7 +21,6 @@ def tanya_gejala(daftar_pertanyaan):
             else:
                 print("⚠️ Harus berupa angka atau ketik 'exit' untuk keluar! ⚠️")
 
-        # Jika frekuensi = 0 → lanjut ke pertanyaan berikutnya
         if frekuensi == 0:
             continue
 
@@ -40,13 +37,11 @@ def tanya_gejala(daftar_pertanyaan):
                 if intensitas in [1, 2]:
                     break
                 else:
-                    print("Masukkan hanya angka 1 atau 2!")
+                    print("⚠️ Masukkan hanya angka 1 atau 2! ⚠️")
             else:
                 print("⚠️ Harus berupa angka atau ketik 'exit' untuk keluar! ⚠️")
 
-        # Hitung skor pertanyaan ini
-        skor = frekuensi * intensitas
-        total += skor
+        total += frekuensi * intensitas
         
     return total
 
@@ -59,7 +54,33 @@ def kategori_cvs(total):
         return "CVS ringan😌"
     else:
         return "CVS sedang/berat🚨"
-    
+
+
+def saran_cvs(kategori):
+    """Memberikan saran berdasarkan hasil kategori CVS"""
+    if "Tidak ada" in kategori:
+        return (
+            "✅ Saran:\n"
+            "- Pertahankan kebiasaan baik saat menggunakan komputer.\n"
+            "- Pastikan pencahayaan ruangan cukup dan nyaman."
+        )
+        
+    elif "CVS ringan" in kategori:
+        return (
+            "💡 Saran untuk CVS Ringan:\n"
+            "- Kurangi waktu menatap layar secara terus-menerus.\n"
+            "- Atur posisi duduk dan jarak pandang ke layar.\n"
+            "- Perbanyak konsumsi air putih agar mata tidak kering."
+        )
+    else:
+        return (
+            "🚨 Saran untuk CVS Sedang/Berat:\n"
+            "- Segera konsultasikan ke dokter mata jika kondisi tidak kunjung membaik.\n"
+            "- Batasi waktu layar dan lakukan peregangan mata.\n"
+            "- Perhatikan postur tubuh dan pencahayaan lingkungan kerja."
+        )
+
+
 def fitur_7():
     pertanyaan = [
         "1. Penglihatan kabur saat melihat jauh",
@@ -83,7 +104,7 @@ def fitur_7():
     print("=== KUESIONER COMPUTER VISION SYNDROME (CVS-Q) ===")
     print("Frekuensi: 0=Tidak Pernah | 1=Kadang-kadang | 2=Sering")
     print("Intensitas: 1=Ringan | 2=Berat")
-    print("Ketik 'exit' kapan saja untuk keluar dari program.")
+    print("Ketik 'exit' kapan saja untuk keluar dari program.\n")
 
     nama = input("Masukkan nama Anda (atau ketik 'exit' untuk keluar): ")
     if nama == "exit":
@@ -91,14 +112,12 @@ def fitur_7():
         return
 
     total_skor = tanya_gejala(pertanyaan)
-
-    # Jika pengguna keluar di tengah jalan
     if total_skor is None:
         return
 
     hasil = kategori_cvs(total_skor)
 
-    print("=== HASIL PENILAIAN CVS ===")
+    print("\n=== HASIL PENILAIAN CVS ===")
     print("Nama:", nama)
     print("Total Skor:", total_skor)
     print("Kategori:", hasil)

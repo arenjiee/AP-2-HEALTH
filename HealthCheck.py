@@ -1,5 +1,5 @@
 def fitur_3():
-    print("\n=== HealthCheck ===")
+    print("\n===== 🔍🔍 HealthCheck 🔍🔍 =====")
     print("Cek kesehatan berdasarkan kegiatan harianmu!!\n")
 
     while True:

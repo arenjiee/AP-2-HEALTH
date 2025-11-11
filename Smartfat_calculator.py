@@ -190,4 +190,4 @@ def fitur_2():
                 print("Tetap jaga kesehatan dan semangat! 👋")
                 return
             else:
-                print("⚠️ Input tidak valid! Masukkan hanya 'y' untuk ya atau 'n' untuk tidak ⚠️\n")
+                print("\n⚠️ Input tidak valid! Masukkan hanya 'y' untuk ya atau 'n' untuk tidak ⚠️\n")
